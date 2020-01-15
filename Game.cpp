@@ -10,7 +10,7 @@ void Game::initWindow()
 
 Game::Game(){
 	this->initWindow();
-	this->snake = Snake();
+	this->player = Player();
 }
 
 Game::~Game(){
@@ -33,14 +33,13 @@ void Game::updateSFMLEvents()
 				if (this->event.key.code == sf::Keyboard::Escape)
 					this->window->close();
 				if (this->event.key.code == sf::Keyboard::W)
-					this->snake.moveSnake(2);
+					this->player.movePlayer(1);
 				if (this->event.key.code == sf::Keyboard::A)
-					this->snake.moveSnake(-1);
+					this->player.movePlayer(2);
 				if (this->event.key.code == sf::Keyboard::S)
-					this->snake.moveSnake(-2);
+					this->player.movePlayer(3);
 				if (this->event.key.code == sf::Keyboard::D)
-					this->snake.moveSnake(1);				
-				break;
+					this->player.movePlayer(4);
 		}
 	}
 }
@@ -48,7 +47,7 @@ void Game::updateSFMLEvents()
 void Game::render() 
 {
 	this->window->clear(sf::Color::Black);
-	this->snake.drawSnake(this->window);
+	this->player.drawPlayer(this->window);
 	this->window->display();
 }
 

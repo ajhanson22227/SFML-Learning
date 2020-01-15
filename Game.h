@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "Snake.h"
+#include "Player.h"
 
 
 class Game {
@@ -9,7 +9,7 @@ private:
 	sf::RenderWindow *window;
 	sf::Event event;
 
-	Snake snake;
+	Player player;
 
 	void initWindow();
 
