@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "Snake.h"
 
 
 class Game {
@@ -8,16 +9,15 @@ private:
 	sf::RenderWindow *window;
 	sf::Event event;
 
-	sf::RectangleShape rect;
-
+	Snake snake;
 
 	void initWindow();
-	void initShape();
 
 public:
 
 	Game();
 	virtual ~Game();
+
 
 	void updateSFMLEvents();
 	void update();

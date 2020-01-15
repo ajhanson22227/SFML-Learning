@@ -2,26 +2,15 @@
 
 void Game::initWindow() 
 {
-	this->window = new sf::RenderWindow(sf::VideoMode(800,600), "A Window Appears!");
+	this->window = new sf::RenderWindow(sf::VideoMode(800,600), "A Window Appears!", sf::Style::Close);
 	this->window->setFramerateLimit(60);
+
 }
 
-void Game::initShape() 
-{
-	int width = 800;
-	int height = 600;
-	this->rect.setSize(sf::Vector2f(15,15));
-    this->rect.setFillColor(sf::Color::White);
-
-    sf::FloatRect textRect = rect.getLocalBounds();
-    this->rect.setOrigin(textRect.left + textRect.width / 2.0f,
-                    textRect.top + textRect.height / 2.0f);
-    this->rect.setPosition(sf::Vector2f(width/2.0f, height/2.0f));
-}
 
 Game::Game(){
 	this->initWindow();
-	this->initShape();
+	this->snake = Snake();
 }
 
 Game::~Game(){
@@ -43,6 +32,14 @@ void Game::updateSFMLEvents()
 			case sf::Event::KeyPressed:
 				if (this->event.key.code == sf::Keyboard::Escape)
 					this->window->close();
+				if (this->event.key.code == sf::Keyboard::W)
+					this->snake.moveSnake(2);
+				if (this->event.key.code == sf::Keyboard::A)
+					this->snake.moveSnake(-1);
+				if (this->event.key.code == sf::Keyboard::S)
+					this->snake.moveSnake(-2);
+				if (this->event.key.code == sf::Keyboard::D)
+					this->snake.moveSnake(1);				
 				break;
 		}
 	}
@@ -51,8 +48,7 @@ void Game::updateSFMLEvents()
 void Game::render() 
 {
 	this->window->clear(sf::Color::Black);
-	this->window->draw(this->rect);
-
+	this->snake.drawSnake(this->window);
 	this->window->display();
 }
 
